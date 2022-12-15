@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS DOM</title>
+    <style>
+        section {
+            display: flex;
+        }
+        .box {
+            width: 10rem;
+            height: 10rem;
+            background-color: red;
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="txt">Hello</div>
+    <h1 id="change">Hello</h1>
+    <section>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </section>
+    <button onclick="flex()">Fliex</button><br><br>
+    <button onclick="replace()">Replace</button><br><br>
+    <div class="time" ></div>
+    <select id="select1" onchange="getOption()">
+        <option value="free">maggie</option>
+        <option value="basic">chacolate</option>
+        <option value="premium">coffe</option>
+    </select><br><br>
+    <form action="">
+        <label for="">Name</label>
+        <input type="text"> <br><br>
+        <label for="">email</label>
+        <input type="email" name="" id=""> <br><br>
+        <label for="">phone no</label>
+        <input type="number" class="numm" id="num"> <br><br>
+    </form>
+    <script>
+        // 1. Write the code to access element which is having id as "text"
+        // Answer
+           console.log(document.querySelector("#txt"));
+
+        // 2 .Write the code to access element which is having tag as "h1"
+        //Answer
+        console.log(document.querySelector("h1"));
+
+        // 3. Write the code to access element which is having class as "box"
+        // Answer
+        console.log(document.querySelector(".box"));
+
+        //4. "<h1>Hello </h1>
+        // Change the heading from ""Hello"" to ""Hello World"" using DOM functions"
+        // Answer
+        console.log(document.querySelector("#txt").value = "Hello world");
+
+        // 5. Create three cards on HTML page and arrange them using flex property in row or horizontal direction and also create button at the bottom named "Change Flex direction". When user clicks on this button, the cards arrangement should be changed to vertical direction.
+        let flex = ()=> {
+            document.querySelector("section").style = "display: block;"
+        }
+
+        // 6.What’s the difference between window vs document?
+        // Window Object: The window object is the topmost object of the DOM hierarchy. It represents a browser window or frame that displays the contents of the webpage. Whenever a window appears on the screen to display the contents of the document, the window object is created. 
+        // syn :-  window.property_name;
+
+        // Document Object: The document object represent a web page that is loaded in the browser. By accessing the document object, we can access the element in the HTML page. With the help of document objects, we can add dynamic content to our web page. The document object can be accessed with a window.document or just document.
+        // syn : - document.property_name;
+
+        // 7."<h1>Hello </h1> Add one style attribute and give text color as red and id attribute and give the id value as ""heading"" in the above given h1 tag using DOM functions"
+        document.querySelector("h1").setAttribute("class", "heading")
+        document.querySelector(".heading").style = "color: red;"
+
+
+        // 8. Create an HTML page having content as Hello world and a button named Replace Text. When user will click on this button page content should be changed to "Welcome to Elevation academy"
+        let replace = ()=> {
+            document.querySelector("#change").innerHTML = "Welcome to Elevation academy"
+        }
+
+        // 9. Write code to implement timer clock using JS -- display HH:MM:SS -- the time should keep updating every second
+        setInterval( ()=> {
+            let date = new Date();
+        let h =  document.querySelector(".time").innerHTML = date.getHours() > 12? document.querySelector(".time").innerHTML = date.getHours() - 12 + ":" : document.querySelector(".time").innerHTML = date.getHours() ;
+        let m = document.querySelector(".time").innerHTML +=  date.getMinutes()+ ":";
+        let s = document.querySelector(".time").innerHTML +=  date.getSeconds();
+        }, 1000 )
+        
+
+        // 10. Create a select drop down for selecting Year 20-21, 21-22 etc. Print the item text selected
+        function getOption() {
+        let selectElement = document.querySelector('#select1');
+        let output = selectElement.value;
+        console.log(output);
+    }
+        //  11. "Create a form having name ,email, phone no. , birth year 
+        // Add validations - phone no. should start with 91 , it should be 10 digits
+        // email should be domain prepbytes.com
+        // birth year should be > 95"
+        let arr = []; 
+        document.querySelector(".numm").addEventListener("keyup", (e)=> {
+            arr = e.target.value;
+            setTimeout( ()=> {
+                if(arr[0] == 9 && arr[1] == 1  ) {
+                console.log("Number is right");
+            } else {
+                console.log("Number is not rigth");
+            }
+            }, 2000)
+        })
+         
+    </script>
+</body>
+</html>
